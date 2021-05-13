@@ -6,21 +6,17 @@ class Ball(Turtle):
         self.shape("circle")
         self.color("white")
         self.penup()
+        self.x_move = 0.1
+        self.y_move = 0.1
 
-    def move(self, direct):
-        new_x = self.xcor() + 0.01
-        if direct == "down":
-            new_y = self.ycor() - 0.5
-        elif direct == "up":
-            new_y = self.ycor() + 0.1
-        else:
-            new_y = self.ycor()
+    def move(self):
+        new_x = self.xcor() + self.x_move
+        new_y = self.ycor() + self.y_move
         self.goto(new_x, new_y)
 
-    def border_check(self, direc):
-        if self.ycor() > 290:
-            return "down"
-        elif self.ycor() < -290:
-            return "up"
-        else:
-            return direc
+    def bounce_y(self):
+        self.y_move *= -1
+
+    def bounce_x(self):
+        self.x_move *= -1
+
